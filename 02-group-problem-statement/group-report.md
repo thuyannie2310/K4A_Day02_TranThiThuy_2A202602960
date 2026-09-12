@@ -104,14 +104,26 @@
 
 | Nguồn | Số người / mẫu | Tín hiệu xác nhận (kèm quote nguyên văn) | Tín hiệu phản bác | Nhóm sửa problem thế nào |
 |---|---:|---|---|---|
-| Interview | | | | |
-| Survey / poll | | | | |
-| Log / ticket / review (nếu có) | | | | |
+| Interview — kế toán bán hàng | 2 | **Số lượt bị ngắt**: "khoảng 3-5 nhân sự hỏi, rải rác trong ngày không cố định giờ giấc", mỗi lượt "mất tầm 5-10 phút" → ~15-50 phút/ngày, trung bình ~30 phút. **Buộc phải dừng việc**: "dừng lại để phản hồi kinh doanh vì cần ưu tiên để tư vấn bán hàng". **Câu hỏi lặp nhiều nhất**: "mã sản phẩm này, có giao được không". **Về 30 phút dựng bảng**: "cơ bản là không phải suy nghĩ mà toàn bộ là máy móc trích xuất và sửa". **Khi được hỏi nếu giải quyết được thì sao**: "các bạn tự tra và đảm bảo câu trả lời đúng, tự động lấy file từ phần mềm về được thì hầu như giải phóng toàn bộ sức cho phần này rồi" | Số lượt hỏi là **3-5 lần/ngày**, thấp hơn hẳn hình dung ban đầu của nhóm là "30 sale thay phiên nhau hỏi cả ngày" | Bỏ cách nói "30 người thay phiên hỏi", thay bằng số thật 3-5 lượt/ngày × 5-10 phút. Đồng thời sửa mô tả bước dựng bảng: **toàn bộ 30 phút là cơ học**, không phải 20 phút như nhóm ghi lúc đầu — phần phán đoán không nằm ở kế toán mà nằm ở sale |
+| Interview — nhân viên kinh doanh | 2 | **Quy trình thật khi cần bán**: "check trên file tồn kho kế toán gửi, nếu tồn có thì bán, nếu tồn có nhưng nợ khách thì hỏi kế toán xem khách nợ bao giờ lấy, có lấy trước được không". **Nguyên nhân gốc phải hỏi**: "em tự tra trên file, nhưng nếu gặp 1 vài trường hợp thì phải hỏi kế toán **vì em không có dữ liệu đó**". **Lỗi do định dạng bảng**: "thỉnh thoảng hơi sai do **dò sai dòng**". **Đã hứa sai với khách**: "có rồi, **vì nhìn sai tồn kho**". **Yêu cầu bổ sung**: "cần biết đang ở **kho nào**, bán được không" | Sale nói **đa số tự tra được và thường chắc chắn với kết quả**, chỉ "một vài trường hợp" mới phải hỏi. Tức là bảng không khó đọc với mọi tình huống như nhóm giả định | Thu hẹp problem lại cho đúng: pain **không** nằm ở việc bảng khó đọc nói chung, mà nằm gọn ở **đúng một tình huống** — tồn có nhưng đang nợ khách. Và nguyên nhân không phải giao diện xấu, mà là **thiếu hẳn một trường dữ liệu**: ngày khách đang nợ sẽ đến lấy hàng, thứ mà sale không có trong file |
+| Log / ticket / review (nếu có) | — | Chưa có. Đang triển khai phiếu đếm 5 ngày để kế toán gạch đầu dòng mỗi lần bị hỏi, nhằm thay số ước lượng 3-5 lượt/ngày bằng số đếm thật | — | Nếu số đếm thật lệch nhiều so với ước lượng, nhóm sẽ chỉnh lại baseline trước khi chốt metric |
 
 **Insight sau validation (1-2 câu — pain thật nằm ở đâu):**
 
 ```text
+Pain thật hẹp hơn và rõ hơn nhiều so với giả định ban đầu của nhóm. Sale đa số tự tra được
+và thường chắc chắn với kết quả; họ chỉ tắc ở đúng một tình huống — mã có tồn nhưng đang nợ
+khách. Lúc đó họ thiếu đúng MỘT trường dữ liệu: khách đang nợ sẽ đến lấy hàng ngày nào.
+Không có trường đó thì không thể tự trả lời "có lấy trước được không", nên buộc phải hỏi
+kế toán. Đây là nguyên nhân gốc, không phải chuyện bảng khó nhìn.
 
+Hai số đo thu được: kế toán bị ngắt 3-5 lượt/ngày, mỗi lượt 5-10 phút (~30 phút/ngày), và
+phải dừng việc ngay vì ưu tiên hỗ trợ bán hàng. Cộng với 30 phút dựng bảng cuối ngày mà
+chính bạn ấy mô tả là "toàn bộ là máy móc trích xuất và sửa", tổng chi phí rơi vào khoảng
+1 giờ/ngày của một người ≈ 26 giờ/tháng.
+
+Validation cũng bác bỏ hai chỗ nhóm nói quá: không phải "30 người thay phiên hỏi cả ngày"
+mà là 3-5 lượt/ngày; và không phải 20 trong 30 phút là cơ học, mà là cả 30 phút.
 ```
 
 Bằng chứng đính kèm (nếu có): `02-group-problem-statement-survey.png`, `...-interview-notes.md`

@@ -23,7 +23,7 @@
 | # | Lăng kính (Lặp lại / Tốn thời gian / AI có thể tốt hơn / Pain từ người khác) | Problem quan sát được | Ai chịu ảnh hưởng? | Dấu hiệu thật (số + bằng chứng) |
 |---|---|---|---|---|
 | 1 | Lặp lại + Tốn thời gian | Kế toán bán hàng tải 3 file từ MISA (tồn kho, bán hàng, mua hàng) rồi vlookup, đối chiếu, sắp xếp lại thành bảng mã hàng × mã kho có phân trạng thái, sau đó đẩy lên CRM | 2 kế toán bán hàng | 30 phút mỗi ngày làm việc, cố định 17:30–18:00. Tách bước: **5 phút** tải 3 file, **15 phút** copy + vlookup giữa các file để ra file chuẩn (thao tác giống hệt nhau, lặp mỗi ngày), **~10 phút** còn lại gán trạng thái + sắp xếp + đẩy CRM → ~13 giờ/tháng |
-| 2 | Pain từ người khác | Bảng chỉ note trạng thái nên không trả lời thẳng được "mã này bán được không". Sale phải tự lọc và tự check; ai không chắc thì quay sang hỏi trực tiếp kế toán bán hàng, biến 1 người thành điểm hỏi duy nhất cho cả phòng | 30 nhân viên kinh doanh **và** 1 kế toán bán hàng bị hỏi | Lặp lại mỗi lần chào bán một mã đang nợ. Người trong công ty mô tả bảng là "rất phức tạp khi nhìn". 30 sale thay phiên nhau hỏi một bạn kế toán → thời gian bạn ấy bị cắt vụn rải rác cả ngày, không chỉ 30 phút cuối giờ. Số lần hỏi/ngày và thời gian mỗi lần: **chưa đo — ưu tiên số 1 phải đo ở Phase 4** |
+| 2 | Pain từ người khác | Bảng chỉ note trạng thái nên không trả lời thẳng được "mã này bán được không". Sale phải tự lọc và tự check; ai không chắc thì quay sang hỏi trực tiếp kế toán bán hàng, biến 1 người thành điểm hỏi duy nhất cho cả phòng | 30 nhân viên kinh doanh **và** 1 kế toán bán hàng bị hỏi | Lặp lại mỗi lần chào bán một mã đang nợ. Người trong công ty mô tả bảng là "rất phức tạp khi nhìn". **Đã phỏng vấn (Phase 4): 3-5 lượt hỏi/ngày, mỗi lượt 5-10 phút ≈ 30 phút/ngày.** Kế toán phải dừng việc ngay "vì cần ưu tiên để tư vấn bán hàng". Câu bị hỏi nhiều nhất: "mã sản phẩm này, có giao được không" |
 | 3 | Pain từ người khác | Sale chỉ có dữ liệu tồn đáng tin sau khi bảng lên CRM cuối giờ chiều | 30 nhân viên kinh doanh | Bảng phát hành 18:00. Hệ quả đã xảy ra: bán trúng hàng đã có chủ hoặc hứa giao rồi không giao được, tần suất ~2–3 tháng 1 lần |
 | 4 | Lặp lại | Mỗi lần khách đổi mẫu hoặc số lượng, đơn phải chạy lại vòng: kế toán mở khoá → sale sửa → sale đề nghị lại → kế toán duyệt → gửi email ghi log | Kế toán bán hàng + sale | ~30/100 đơn mỗi tháng bị đổi, mỗi lần ~20 phút **tính cả thời gian chờ duyệt** → ~10 giờ/tháng. Chủ yếu đổi mẫu và đổi số lượng |
 | 5 | Pain từ người khác | Sale đã đổi đơn nhưng kế toán quên ấn duyệt và nhập vào phần mềm kế toán → dữ liệu hai bên lệch nhau | Kế toán, sale, kho, và khách hàng cuối | Đã xảy ra và **đã dẫn tới thiếu hàng đúng ngày hẹn giao cho khách**. Tần suất: **chưa đo** → đưa vào Phase 4 |
@@ -99,25 +99,25 @@ Current workflow 3-7 bước:
 Bottleneck:
 Workflow này có hai tầng nghẽn khác hẳn bản chất, và cần tách ra thì mới chọn đúng giải pháp.
 
-Tầng 1 — thao tác cơ học lặp lại (bước 1-2, 20 phút/ngày). Tải 3 file rồi copy, vlookup
-giữa chúng để ra file chuẩn. Chuỗi thao tác này giống hệt nhau mỗi ngày làm việc, không có
-gì phải suy nghĩ, và chiếm 2/3 tổng thời gian. Đây là phần máy làm được 100%.
+Tầng 1 — toàn bộ 30 phút dựng bảng là thao tác cơ học. Người làm mô tả nguyên văn: "cơ bản
+là không phải suy nghĩ mà toàn bộ là máy móc trích xuất và sửa". Tải 3 file, copy, vlookup,
+sắp xếp, note trạng thái rồi đẩy CRM — chuỗi thao tác giống hệt nhau mỗi ngày làm việc.
+Đây là phần máy làm được 100%, và là cả 30 phút chứ không phải 20 phút như ghi nhận ban đầu.
 
-Tầng 2 — bảng dừng ở mức nguyên liệu, không phải câu trả lời (bước 4 và bước 6). Kế toán
-chỉ note được: mã này đang nợ khách nào, dự kiến giao ngày nào, lô nào sắp về ngày nào.
-Từ mớ note đó, muốn biết một mã có bán được cho khách trước mặt hay không thì phải so ngày
-hẹn giao của khách đang nợ với ngày lô hàng sắp về — tức là mượn hàng của khách giao sau để
-giao cho khách cần trước. Quy tắc này không được viết ra ở đâu và không được tính sẵn, nên
-việc lọc và check bị đẩy ra ngoài quy trình rồi nhân lên 30 lần: 30 nhân viên kinh doanh
-mỗi người tự lọc, tự check và tự kết luận trên cùng một bảng.
+Tầng 2 — thiếu đúng một trường dữ liệu (bước 6 và 7). Phỏng vấn nhân viên kinh doanh cho
+thấy pain hẹp hơn nhiều so với giả định ban đầu: đa số trường hợp họ tự tra được và "thường
+là chắc chắn với kết quả". Họ chỉ tắc ở đúng một tình huống — mã có tồn nhưng đang nợ khách.
+Lúc đó, theo lời họ: "phải hỏi kế toán xem khách nợ bao giờ lấy, có lấy trước được không...
+vì em không có dữ liệu đó". Bảng họ nhận được cho biết đang nợ khách, nhưng không cho biết
+khách đó đến lấy ngày nào — nên không cách nào tự kết luận. Đây là thiếu dữ liệu, không phải
+bảng khó nhìn.
 
-Hệ quả trực tiếp của tầng 2: vì không ai tự check chắc được, 30 nhân viên kinh doanh thay
-phiên nhau hỏi một bạn kế toán bán hàng. Bạn ấy trở thành điểm hỏi duy nhất của cả phòng
-kinh doanh, nên thời gian bị cắt vụn rải rác suốt ngày làm việc — đây mới là phần tốn kém
-nhất, và là phần chưa từng được đo.
+Hệ quả trực tiếp của tầng 2, nay đã đo được: 3-5 lượt hỏi mỗi ngày, mỗi lượt 5-10 phút,
+rải rác không cố định giờ. Kế toán phải dừng việc đang làm để trả lời ngay "vì cần ưu tiên
+để tư vấn bán hàng", nên chi phí không chỉ là 30 phút mà còn là mạch làm việc bị cắt vụn.
 
-Tầng 1 tốn 20 phút cố định mỗi ngày; tầng 2 vừa gây ra lỗi hứa sai với khách, vừa ăn mòn
-thời gian của kế toán theo cách không ai nhìn thấy trên bảng chấm công.
+Tầng 1 tốn 30 phút cố định mỗi ngày; tầng 2 tốn thêm khoảng 30 phút rải rác và là nguyên
+nhân của lỗi hứa sai với khách. Tổng khoảng 1 giờ/ngày của một người.
 
 Impact:
 - Chi phí nhìn thấy được — kế toán dựng bảng: 30 phút/ngày × ~26 ngày = ~13 giờ/tháng.
