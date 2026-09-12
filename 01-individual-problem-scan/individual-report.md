@@ -22,8 +22,8 @@
 
 | # | Lăng kính (Lặp lại / Tốn thời gian / AI có thể tốt hơn / Pain từ người khác) | Problem quan sát được | Ai chịu ảnh hưởng? | Dấu hiệu thật (số + bằng chứng) |
 |---|---|---|---|---|
-| 1 | Lặp lại + Tốn thời gian | Kế toán bán hàng tải 3 file từ MISA (tồn kho, bán hàng, mua hàng) rồi vlookup, đối chiếu, sắp xếp lại thành bảng mã hàng × mã kho có phân trạng thái, sau đó đẩy lên CRM | 2 kế toán bán hàng | 30 phút mỗi ngày làm việc, cố định 17:30–18:00. Tách bước: 5 phút tải file, 25 phút vlookup + đối chiếu + sắp xếp + đẩy CRM → ~13 giờ/tháng |
-| 2 | Pain từ người khác | Bảng tồn kho khó đọc: khi hàng có trong kho nhưng đang nợ khách khác, nhân viên kinh doanh phải tự tra xem đang nợ ai, hẹn giao ngày nào, có lô sắp về kịp không, để quyết định có mượn hàng giao khách trước mặt hay không | 30 nhân viên kinh doanh | Quyết định này lặp lại mỗi lần chào bán một mã hàng đang nợ. Chị mô tả nguyên văn: "file rất phức tạp khi nhìn". Thời gian mỗi lần tra: **chưa đo** |
+| 1 | Lặp lại + Tốn thời gian | Kế toán bán hàng tải 3 file từ MISA (tồn kho, bán hàng, mua hàng) rồi vlookup, đối chiếu, sắp xếp lại thành bảng mã hàng × mã kho có phân trạng thái, sau đó đẩy lên CRM | 2 kế toán bán hàng | 30 phút mỗi ngày làm việc, cố định 17:30–18:00. Tách bước: **5 phút** tải 3 file, **15 phút** copy + vlookup giữa các file để ra file chuẩn (thao tác giống hệt nhau, lặp mỗi ngày), **~10 phút** còn lại gán trạng thái + sắp xếp + đẩy CRM → ~13 giờ/tháng |
+| 2 | Pain từ người khác | Bảng chỉ note trạng thái nên không trả lời thẳng được "mã này bán được không". Sale phải tự lọc và tự check; ai không chắc thì quay sang hỏi trực tiếp kế toán bán hàng, biến 1 người thành điểm hỏi duy nhất cho cả phòng | 30 nhân viên kinh doanh **và** 1 kế toán bán hàng bị hỏi | Lặp lại mỗi lần chào bán một mã đang nợ. Người trong công ty mô tả bảng là "rất phức tạp khi nhìn". 30 sale thay phiên nhau hỏi một bạn kế toán → thời gian bạn ấy bị cắt vụn rải rác cả ngày, không chỉ 30 phút cuối giờ. Số lần hỏi/ngày và thời gian mỗi lần: **chưa đo — ưu tiên số 1 phải đo ở Phase 4** |
 | 3 | Pain từ người khác | Sale chỉ có dữ liệu tồn đáng tin sau khi bảng lên CRM cuối giờ chiều | 30 nhân viên kinh doanh | Bảng phát hành 18:00. Hệ quả đã xảy ra: bán trúng hàng đã có chủ hoặc hứa giao rồi không giao được, tần suất ~2–3 tháng 1 lần |
 | 4 | Lặp lại | Mỗi lần khách đổi mẫu hoặc số lượng, đơn phải chạy lại vòng: kế toán mở khoá → sale sửa → sale đề nghị lại → kế toán duyệt → gửi email ghi log | Kế toán bán hàng + sale | ~30/100 đơn mỗi tháng bị đổi, mỗi lần ~20 phút **tính cả thời gian chờ duyệt** → ~10 giờ/tháng. Chủ yếu đổi mẫu và đổi số lượng |
 | 5 | Pain từ người khác | Sale đã đổi đơn nhưng kế toán quên ấn duyệt và nhập vào phần mềm kế toán → dữ liệu hai bên lệch nhau | Kế toán, sale, kho, và khách hàng cuối | Đã xảy ra và **đã dẫn tới thiếu hàng đúng ngày hẹn giao cho khách**. Tần suất: **chưa đo** → đưa vào Phase 4 |
@@ -58,7 +58,7 @@ Giữ bài nào: actor cụ thể, workflow vẽ được 3-7 bước, bottlenec
 
 | Rank | Problem (copy từ bảng scan) | Vì sao chọn (2-3 ý) | Điều còn chưa chắc |
 |---|---|---|---|
-| 1 | #1 + #2 + #3 — Bảng tồn kho không trả lời được câu hỏi "có bán được không" | Actor rõ ở cả hai đầu: 2 kế toán bán hàng làm ra bảng, 30 nhân viên kinh doanh dùng bảng. Workflow 6 bước vẽ được ngay và đã bấm giờ tách được bước (5 phút tải, 25 phút xử lý). Bottleneck không phải thao tác gộp file mà là một quy tắc quyết định cụ thể: hàng đang nợ khách A có được mượn giao cho khách B trước không | Chưa đo thời gian mỗi nhân viên kinh doanh mất khi tra một mã hàng đang nợ. Tần suất lỗi bán trúng hàng đã có chủ mới chỉ ở mức ~2–3 tháng/lần, chưa đủ lớn để một mình làm nên impact |
+| 1 | #1 + #2 + #3 — Bảng tồn kho không trả lời được câu hỏi "có bán được không" | Actor rõ ở cả hai đầu: 2 kế toán bán hàng làm ra bảng, 30 nhân viên kinh doanh dùng bảng. Workflow 6 bước vẽ được ngay và đã bấm giờ tách được bước (5 phút tải, 15 phút copy/vlookup, ~10 phút gán trạng thái). Tách ra mới thấy có hai tầng nghẽn khác bản chất: 20 phút thao tác cơ học lặp y hệt mỗi ngày, và một quy tắc quyết định chưa ai viết ra — hàng đang nợ khách A có được mượn giao cho khách B trước không | Chưa đo số lần 30 sale hỏi kế toán mỗi ngày và thời gian mỗi lần — đây đang là phần impact lớn nhất của bài mà lại hoàn toàn chưa có số. Tần suất lỗi bán trúng hàng đã có chủ chỉ ~2–3 tháng/lần, một mình nó chưa đủ làm nên impact |
 | 2 | #6 + #7 + #8 — Chốt doanh số tháng và đối chiếu lệch số | Impact đo được lớn nhất cả bảng: 5 ngày/tháng của 1 người ≈ 40 giờ/tháng. Ảnh hưởng trực tiếp tới thu nhập của 30 sale nên mức độ nhạy cảm cao. Là bài duy nhất có chỗ cho AI thật, vì quy tắc hệ số nằm trong văn bản chương trình thay đổi theo từng tháng | Chưa đếm số dòng lệch mỗi kỳ, nên chưa biết lệch số là do quy tắc khó hay do nhập liệu sai. Phạm vi rộng: gồm cả quy tắc hệ số, hai mốc ghi nhận, và xử lý đơn huỷ truy ngược |
 | 3 | #4 + #5 — Vòng đổi thông tin đơn hàng | Tần suất cao và đã có số: 30/100 đơn/tháng, 20 phút/lần. Có hậu quả thật đã xảy ra chứ không chỉ là chậm: quên duyệt dẫn tới thiếu hàng đúng ngày hẹn giao khách | Chưa tách được trong 20 phút thì bao nhiêu là thao tác và bao nhiêu là chờ duyệt. Chưa đo tần suất quên duyệt, trong khi đây mới là phần rủi ro nhất |
 
@@ -86,38 +86,64 @@ bảng này mỗi lần chào bán một mã hàng, tức là nhiều lần tron
 
 Current workflow 3-7 bước:
 1. Tải 3 file từ MISA: tồn kho hiện tại, bán hàng cho khách, mua hàng vào (5 phút)
-2. Vlookup và đối chiếu 3 nguồn theo mã hàng
+2. Copy và vlookup giữa 3 file để ra file chuẩn — chuỗi thao tác giống hệt nhau, lặp
+   lại đúng như vậy mỗi ngày làm việc (15 phút)
 3. Sắp xếp lại thành bảng: mã hàng là dòng, mã kho là cột
 4. Gán trạng thái cho từng ô: có sẵn ở kho nào / đang nợ khách ở kho nào kèm ngày hẹn
    giao / hàng sắp về kho nào kèm ngày về dự kiến, mỗi lô một ngày khác nhau
-5. Đẩy bảng lên CRM cho phòng kinh doanh (bước 2-5 tổng cộng 25 phút)
-6. Mỗi nhân viên kinh doanh tự đọc bảng và tự suy ra có bán được hay không — đây là
-   phần việc bị đẩy ra ngoài quy trình và không ai đo
+5. Đẩy bảng lên CRM cho phòng kinh doanh (bước 3-5 còn lại ~10 phút)
+6. Mỗi nhân viên kinh doanh tự lọc bảng và tự check xem có bán được hay không
+7. Ai không chắc thì hỏi trực tiếp kế toán bán hàng; kế toán dừng việc đang làm để tra hộ
+   — bước 6 và 7 bị đẩy ra ngoài quy trình và chưa ai đo bao giờ
 
 Bottleneck:
-Không nằm ở bước tải file (5 phút, đã có sẵn trên MISA). Bottleneck là quy tắc quyết định
-ở bước 4 và bước 6: khi một mã có hàng trong kho nhưng đã nợ khách A, muốn biết có mượn
-giao cho khách B trước được không thì phải so ngày hẹn giao của A với ngày lô hàng sắp về.
-Quy tắc này hiện không được viết ra ở đâu, không được tính sẵn trong bảng, và bị nhân ra
-30 lần vì 30 nhân viên kinh doanh mỗi người phải tự làm lại phép so đó trong đầu.
+Workflow này có hai tầng nghẽn khác hẳn bản chất, và cần tách ra thì mới chọn đúng giải pháp.
+
+Tầng 1 — thao tác cơ học lặp lại (bước 1-2, 20 phút/ngày). Tải 3 file rồi copy, vlookup
+giữa chúng để ra file chuẩn. Chuỗi thao tác này giống hệt nhau mỗi ngày làm việc, không có
+gì phải suy nghĩ, và chiếm 2/3 tổng thời gian. Đây là phần máy làm được 100%.
+
+Tầng 2 — bảng dừng ở mức nguyên liệu, không phải câu trả lời (bước 4 và bước 6). Kế toán
+chỉ note được: mã này đang nợ khách nào, dự kiến giao ngày nào, lô nào sắp về ngày nào.
+Từ mớ note đó, muốn biết một mã có bán được cho khách trước mặt hay không thì phải so ngày
+hẹn giao của khách đang nợ với ngày lô hàng sắp về — tức là mượn hàng của khách giao sau để
+giao cho khách cần trước. Quy tắc này không được viết ra ở đâu và không được tính sẵn, nên
+việc lọc và check bị đẩy ra ngoài quy trình rồi nhân lên 30 lần: 30 nhân viên kinh doanh
+mỗi người tự lọc, tự check và tự kết luận trên cùng một bảng.
+
+Hệ quả trực tiếp của tầng 2: vì không ai tự check chắc được, 30 nhân viên kinh doanh thay
+phiên nhau hỏi một bạn kế toán bán hàng. Bạn ấy trở thành điểm hỏi duy nhất của cả phòng
+kinh doanh, nên thời gian bị cắt vụn rải rác suốt ngày làm việc — đây mới là phần tốn kém
+nhất, và là phần chưa từng được đo.
+
+Tầng 1 tốn 20 phút cố định mỗi ngày; tầng 2 vừa gây ra lỗi hứa sai với khách, vừa ăn mòn
+thời gian của kế toán theo cách không ai nhìn thấy trên bảng chấm công.
 
 Impact:
-- Kế toán: 30 phút/ngày × ~26 ngày = ~13 giờ/tháng.
-- Kinh doanh: 30 người phải đọc một bảng mà chính chủ mô tả là "rất phức tạp khi nhìn".
-  Thời gian mỗi lần tra: chưa đo.
+- Chi phí nhìn thấy được — kế toán dựng bảng: 30 phút/ngày × ~26 ngày = ~13 giờ/tháng.
+- Chi phí ẩn, và nhiều khả năng lớn hơn — kế toán bị hỏi: 30 nhân viên kinh doanh thay
+  phiên nhau hỏi cùng một người suốt ngày làm việc. Mỗi lần hỏi không chỉ mất thời gian
+  tra mà còn cắt đứt mạch việc đang làm. Số lần hỏi/ngày: chưa đo.
+- Chi phí phía kinh doanh: 30 người phải tự lọc một bảng được mô tả là "rất phức tạp khi
+  nhìn", hoặc phải chờ kế toán rảnh mới hỏi được. Thời gian mỗi lần: chưa đo.
 - Hậu quả đã xảy ra: bán trúng hàng đã có chủ hoặc hứa giao rồi không giao được, tần suất
   ~2-3 tháng 1 lần. Mỗi lần như vậy là một khách đã ký hợp đồng bị thất hứa.
 
 Success metric:
-- Hiện trạng: 30 phút/ngày dựng bảng (5 tải + 25 xử lý); bảng lên CRM lúc 18:00; quy tắc
-  mượn hàng do 30 nhân viên kinh doanh tự suy; lỗi hứa sai ~2-3 tháng/lần.
-- Mục tiêu: dưới 5 phút/ngày cho kế toán; bảng hiển thị sẵn một cột kết luận cho mỗi mã —
-  bán được ngay / bán được nếu giao sau ngày X / không bán được — thay vì bắt người đọc
-  tự suy.
-- Cách đo: bấm giờ khâu dựng bảng 5 ngày liên tiếp trước và sau; bấm giờ 10 lần một nhân
-  viên kinh doanh tra một mã đang nợ, trước và sau; đếm số lần kinh doanh phải hỏi miệng
-  kế toán trong 1 tuần.
-- Metric giữ chất lượng: số lần hứa sai với khách không tăng so với mức nền 2-3 tháng/lần.
+- Hiện trạng: 30 phút/ngày dựng bảng (5 tải + 15 copy/vlookup + ~10 note trạng thái);
+  bảng lên CRM lúc 18:00; 30 nhân viên kinh doanh tự lọc, ai không chắc thì hỏi kế toán;
+  số lần hỏi/ngày chưa đo; lỗi hứa sai ~2-3 tháng/lần.
+- Mục tiêu: dưới 5 phút/ngày cho kế toán; và có một chỗ duy nhất để tra — hỏi một mã thì
+  hệ thống tự check chéo 3 nguồn và trả về số cuối: bán được bao nhiêu ngay bây giờ, bán
+  được thêm bao nhiêu nếu hẹn giao sau ngày X. Kế toán và kinh doanh dùng chung đúng con
+  số đó, không ai phải tự lọc lại.
+- Metric chính: **số lần kinh doanh phải hỏi kế toán về khả năng bán của một mã, mỗi ngày**
+  — mục tiêu đưa về gần 0, vì mỗi lần hỏi là một lần hệ thống không trả lời được thay người.
+- Cách đo: cho kế toán gạch đầu dòng mỗi lần bị hỏi trong 5 ngày liên tiếp, ghi kèm thời
+  gian mỗi lần; bấm giờ khâu dựng bảng 5 ngày trước và sau; bấm giờ 10 lần một nhân viên
+  kinh doanh tra một mã đang nợ, trước và sau.
+- Metric giữ chất lượng: số lần hứa sai với khách không tăng so với mức nền 2-3 tháng/lần;
+  số lần kế toán và kinh doanh hiểu khác nhau về khả năng bán của cùng một mã = 0.
 
 Non-AI alternative:
 MISA đã có sẵn cả 3 nguồn dữ liệu, nên đây không phải bài toán thiếu dữ liệu.
@@ -125,16 +151,21 @@ MISA đã có sẵn cả 3 nguồn dữ liệu, nên đây không phải bài to
    đang nợ với ngày về của các lô đang trên đường, rồi tính ra số lượng thực sự bán được
    theo từng mốc thời gian.
 2. Dùng Power Query hoặc script để tự gộp 3 file và tính sẵn cột kết luận đó.
-3. Thiết kế lại cách hiển thị: mỗi mã chỉ cần một dòng kết luận, không bắt người bán hàng
-   đọc ma trận.
+3. Thiết kế lại đầu ra: thay vì phát hành một ma trận để 30 người tự lọc, dựng một điểm
+   tra duy nhất trả về số cuối cho từng mã. Đây là thay đổi quan trọng nhất — nó chuyển
+   đầu ra từ nguyên liệu thành câu trả lời, và bỏ được việc 30 người cùng làm lại một
+   phép tính.
 
 AI hypothesis:
 Thấp. Dữ liệu có cấu trúc, quy tắc mượn hàng tuy nhiều bước nhưng hoàn toàn xác định — với
 cùng một bộ dữ liệu chỉ có một đáp án đúng. Theo ma trận độ phù hợp thì đây là ô độ mơ hồ
 thấp, độ phức tạp cao, tức là Workflow điều phối nhiều bước rõ ràng, chưa cần đến Agent.
-Chỗ AI có thể thêm giá trị chỉ là lớp hỏi đáp bằng ngôn ngữ tự nhiên cho 30 nhân viên kinh
-doanh ("mã X còn bán được cho khách lấy tháng 12 không"), nhưng đó là tiện ích ở tầng trên,
-không phải điểm nghẽn.
+Chỗ duy nhất AI có thể thêm giá trị là lớp hỏi đáp bằng ngôn ngữ tự nhiên ở trên cùng —
+sale gõ "mã X còn bán được cho khách lấy tháng 12 không" thay vì phải nhập đúng mã và đúng
+mốc ngày. Nhưng cần phân biệt rõ: cái sale cần là MỘT CHỖ ĐỂ HỎI, không nhất thiết là AI.
+Một ô tra cứu thường trên CRM cũng giải quyết được, và rẻ hơn nhiều. AI chỉ đáng thêm nếu
+sau khi đo thấy sale thực sự vướng ở khâu diễn đạt câu hỏi, chứ không phải vướng ở việc
+không có câu trả lời.
 
 Quick gut:
 [ ] No AI / process fix
@@ -150,24 +181,30 @@ Quick gut:
 CURRENT STATE — 30 phút/ngày (17:30–18:00) + phần việc ẩn của 30 sale
 
 [1 Tải 3 file MISA: 5']
-→ [2 Vlookup, đối chiếu 3 nguồn]
+→ [2 Copy + vlookup giữa 3 file để ra file chuẩn: 15']
+     <-- nghẽn tầng 1: thao tác giống hệt nhau, lặp mỗi ngày, máy làm được 100%
 → [3 Sắp xếp thành ma trận mã hàng × mã kho]
-→ [4 Gán trạng thái: sẵn / nợ khách + ngày giao / sắp về + ngày về]   <-- bottleneck
-→ [5 Đẩy lên CRM]                                  (bước 2-5 = 25')
-→ [6 Mỗi sale tự suy: hàng này nợ ai, hẹn bao giờ, có mượn được không]
-     <-- bottleneck thật, nhân 30 lần, không ai đo
+→ [4 Gán trạng thái: sẵn / nợ khách + ngày giao / sắp về + ngày về]
+→ [5 Đẩy lên CRM]                                  (bước 3-5 = ~10')
+→ [6 Mỗi sale tự lọc + tự check: hàng này nợ ai, hẹn bao giờ, mượn được không]
+→ [7 Không chắc → hỏi thẳng kế toán → kế toán dừng việc để tra hộ]
+     <-- nghẽn tầng 2: 1 kế toán là điểm hỏi duy nhất cho 30 sale,
+         thời gian bị cắt vụn cả ngày, chưa ai đo
 
 FUTURE STATE — mục tiêu dưới 5 phút/ngày
 
-[1 Script tự tải + gộp 3 nguồn MISA: 0']
+[1 Script tự tải + copy/vlookup 3 nguồn MISA theo đúng chuỗi thao tác hiện tại: 0']
+     ^ xoá thẳng 20 phút/ngày của tầng 1
 → [2 Rule tính khả dụng theo mốc thời gian:
       với mỗi mã × kho, so ngày hẹn giao của đơn đang nợ
       với ngày về của lô đang trên đường → ra số lượng bán được theo từng mốc]
-→ [3 Bảng hiển thị 1 dòng kết luận cho mỗi mã:
-      bán được ngay / bán được nếu giao sau ngày X / không bán được]
+→ [3 MỘT chỗ duy nhất để hỏi: nhập mã hàng → hệ thống tự check chéo 3 nguồn
+      → trả về SỐ CUỐI: bán được bao nhiêu ngay, bao nhiêu nếu giao sau ngày X]
 → [4 Kế toán bán hàng kiểm ngoại lệ: mã mới, lô đổi ngày về, hàng lỗi: ~3']
      <-- human boundary
-→ [5 Sale đọc thẳng kết luận, không phải tự suy]
+→ [5 Sale đọc thẳng số cuối, không tự lọc, không tự check, KHÔNG phải hỏi kế toán
+      → kế toán và kinh doanh thống nhất trên cùng một con số]
+      ^ bước 7 của quy trình cũ biến mất hoàn toàn — đây mới là phần tiết kiệm lớn nhất
 
 Boundary: quy tắc mượn hàng do người đặt ra và người duyệt, hệ thống chỉ áp dụng.
 Mọi ca ngoại lệ (khách VIP, hàng lỗi, lô về đổi ngày) vẫn do kế toán quyết.
@@ -384,14 +421,16 @@ Card #1 — Bảng tồn kho không trả lời được câu hỏi "mã này c�
 **Vì sao (2-3 câu: workflow gì, số đo gì, impact gì):**
 
 ```text
-Workflow chỉ 6 bước, đã bấm giờ tách được bước và cho thấy điều bất ngờ: 5 phút tải file
-không phải vấn đề, 25 phút xử lý cũng chưa phải vấn đề lớn nhất — bottleneck thật là một
-quy tắc quyết định chưa ai viết ra, đó là hàng đang nợ khách A có được mượn giao cho khách
-B trước hay không, phụ thuộc vào ngày hẹn giao của A so với ngày lô hàng sắp về. Impact
-không dừng ở 13 giờ/tháng của kế toán, vì quy tắc đó đang bị nhân lên 30 lần: 30 nhân viên
-kinh doanh mỗi người tự suy lại phép so đó trong đầu, dựa trên một bảng mà chính người
-trong công ty mô tả là rất phức tạp khi nhìn. Hậu quả đã xảy ra thật: cứ 2-3 tháng lại có
-một lần bán trúng hàng đã có chủ hoặc hứa giao rồi không giao được cho khách đã ký hợp đồng.
+Workflow chỉ 6 bước, và khi bấm giờ tách bước thì thấy 30 phút này gồm hai loại việc rất
+khác nhau. 20 phút đầu là việc máy làm được 100%: 5 phút tải 3 file từ MISA, rồi 15 phút
+copy và vlookup giữa các file để ra file chuẩn — chuỗi thao tác giống hệt nhau, lặp lại
+đúng như vậy mỗi ngày làm việc. 10 phút còn lại mới là phần cần phán đoán, và nó kéo theo
+một việc lớn hơn nhiều: vì bảng chỉ dừng ở mức liệt kê trạng thái, câu hỏi thật sự của
+người bán hàng — hàng này đang nợ khách A thì mượn giao khách B trước được không — bị đẩy
+hết sang 30 nhân viên kinh doanh, mỗi người tự so ngày hẹn giao với ngày lô sắp về trong
+đầu, dựa trên một bảng mà chính người trong công ty mô tả là rất phức tạp khi nhìn. Hậu
+quả đã xảy ra thật: cứ 2-3 tháng lại có một lần bán trúng hàng đã có chủ hoặc hứa giao rồi
+không giao được cho khách đã ký hợp đồng.
 ```
 
 **Câu hỏi tôi muốn nhóm challenge (1-2 câu hỏi đúng chỗ yếu):**
