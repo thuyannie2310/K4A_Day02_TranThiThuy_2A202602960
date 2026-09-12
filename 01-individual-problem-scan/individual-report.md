@@ -147,9 +147,11 @@ Success metric:
 
 Non-AI alternative:
 MISA đã có sẵn cả 3 nguồn dữ liệu, nên đây không phải bài toán thiếu dữ liệu.
-1. Viết quy tắc mượn hàng thành công thức: với mỗi mã × kho, so ngày hẹn giao của các đơn
-   đang nợ với ngày về của các lô đang trên đường, rồi tính ra số lượng thực sự bán được
-   theo từng mốc thời gian.
+1. Viết quy tắc mượn hàng thành công thức. Quy tắc này có tên chuẩn trong ngành là
+   cumulative available-to-promise with look-ahead: với mỗi mã × kho, chỉ cho phép mượn
+   phần đang nợ khách A nếu lượng hàng về tích luỹ từ nay đến ngày hẹn của A đủ bù lại.
+   Lưu ý công thức ATP cơ bản (trừ thẳng toàn bộ phần đã cam kết) là SAI với mô hình này —
+   nó sẽ báo hết hàng cho một mã thực tế vẫn giao được, tức tự chặn cơ hội bán.
 2. Dùng Power Query hoặc script để tự gộp 3 file và tính sẵn cột kết luận đó.
 3. Thiết kế lại đầu ra: thay vì phát hành một ma trận để 30 người tự lọc, dựng một điểm
    tra duy nhất trả về số cuối cho từng mã. Đây là thay đổi quan trọng nhất — nó chuyển
@@ -157,9 +159,11 @@ MISA đã có sẵn cả 3 nguồn dữ liệu, nên đây không phải bài to
    phép tính.
 
 AI hypothesis:
-Thấp. Dữ liệu có cấu trúc, quy tắc mượn hàng tuy nhiều bước nhưng hoàn toàn xác định — với
-cùng một bộ dữ liệu chỉ có một đáp án đúng. Theo ma trận độ phù hợp thì đây là ô độ mơ hồ
-thấp, độ phức tạp cao, tức là Workflow điều phối nhiều bước rõ ràng, chưa cần đến Agent.
+Thấp. Quy tắc look-ahead nhiều bước và phải duyệt qua từng mốc ngày, nhưng vẫn hoàn toàn
+xác định: cùng một bộ dữ liệu và cùng một biên an toàn thì chỉ có một đáp án đúng. Theo ma
+trận độ phù hợp, đây là ô độ mơ hồ thấp × độ phức tạp cao — tức là Workflow điều phối nhiều
+bước rõ ràng, chưa cần đến Agent. Việc bài toán phức tạp hơn dự kiến không đẩy nó lên mức
+Agent, vì không có chỗ nào cần AI tự lập kế hoạch hay tự chọn bước tiếp theo.
 Chỗ duy nhất AI có thể thêm giá trị là lớp hỏi đáp bằng ngôn ngữ tự nhiên ở trên cùng —
 sale gõ "mã X còn bán được cho khách lấy tháng 12 không" thay vì phải nhập đúng mã và đúng
 mốc ngày. Nhưng cần phân biệt rõ: cái sale cần là MỘT CHỖ ĐỂ HỎI, không nhất thiết là AI.
@@ -195,9 +199,10 @@ FUTURE STATE — mục tiêu dưới 5 phút/ngày
 
 [1 Script tự tải + copy/vlookup 3 nguồn MISA theo đúng chuỗi thao tác hiện tại: 0']
      ^ xoá thẳng 20 phút/ngày của tầng 1
-→ [2 Rule tính khả dụng theo mốc thời gian:
-      với mỗi mã × kho, so ngày hẹn giao của đơn đang nợ
-      với ngày về của lô đang trên đường → ra số lượng bán được theo từng mốc]
+→ [2 Rule tính khả dụng theo mốc thời gian (cumulative ATP with look-ahead):
+      KHÔNG hỏi "còn lại bao nhiêu" mà hỏi "nếu mượn phần đang nợ khách A
+      thì từ nay tới ngày hẹn của A, hàng về có đủ bù lại không"
+      → ra số lượng bán được theo từng mốc giao]
 → [3 MỘT chỗ duy nhất để hỏi: nhập mã hàng → hệ thống tự check chéo 3 nguồn
       → trả về SỐ CUỐI: bán được bao nhiêu ngay, bao nhiêu nếu giao sau ngày X]
 → [4 Kế toán bán hàng kiểm ngoại lệ: mã mới, lô đổi ngày về, hàng lỗi: ~3']
@@ -206,8 +211,12 @@ FUTURE STATE — mục tiêu dưới 5 phút/ngày
       → kế toán và kinh doanh thống nhất trên cùng một con số]
       ^ bước 7 của quy trình cũ biến mất hoàn toàn — đây mới là phần tiết kiệm lớn nhất
 
-Boundary: quy tắc mượn hàng do người đặt ra và người duyệt, hệ thống chỉ áp dụng.
-Mọi ca ngoại lệ (khách VIP, hàng lỗi, lô về đổi ngày) vẫn do kế toán quyết.
+Boundary: hệ thống chỉ áp dụng quy tắc, không đặt ra quy tắc. Ba tham số sau do người
+quyết và người duyệt, không để công thức tự chọn:
+  - biên an toàn bao nhiêu ngày trước hạn giao mới dám mượn (vì ~10% lô về trễ)
+  - đơn nào bị cấm mượn (khách VIP, đơn đã cam kết cứng)
+  - ai được duyệt ngoại lệ
+Mọi ca ngoại lệ (mã mới, hàng lỗi, lô đổi ngày về) vẫn do kế toán quyết.
 Fallback: nếu MISA đổi format file xuất hoặc script sai, kế toán quay lại quy trình
 vlookup tay 30 phút như hiện nay — không ngày nào phòng kinh doanh mất bảng.
 ```
