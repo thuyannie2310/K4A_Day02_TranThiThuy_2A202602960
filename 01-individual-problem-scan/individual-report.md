@@ -223,6 +223,17 @@ vlookup tay 30 phút như hiện nay — không ngày nào phòng kinh doanh m�
 
 File đính kèm (nếu vẽ riêng): `01-individual-problem-scan-workflow-card-1.png`
 
+**Kiểm chứng Card #1 — phỏng vấn 4 người**
+
+> Ghi lại ở đây vì nhóm đã chốt candidate là bài điều phối sự cố bảo trì của bạn Phan Duy Bảo, nên phần kiểm chứng cho bài tồn kho không còn nằm trong bản nộp nhóm. Dữ liệu dưới đây là bằng chứng cho Card #1, và cho thấy scan cá nhân đã được kiểm chứng thật chứ không dừng ở ước lượng.
+
+| Người được hỏi | Số người | Trích nguyên văn | Điều tôi phải sửa lại sau khi nghe |
+|---|---:|---|---|
+| Kế toán bán hàng | 2 | "Khoảng 3-5 nhân sự hỏi, rải rác trong ngày không cố định giờ giấc", mỗi lượt "mất tầm 5-10 phút". "Dừng lại để phản hồi kinh doanh vì cần ưu tiên để tư vấn bán hàng". Câu bị hỏi nhiều nhất: "mã sản phẩm này, có giao được không". Về 30 phút dựng bảng: "cơ bản là không phải suy nghĩ mà toàn bộ là máy móc trích xuất và sửa" | Bỏ cách nói "30 sale thay phiên nhau hỏi cả ngày" — số thật là 3-5 lượt/ngày. Sửa mô tả bước dựng bảng: **cả 30 phút là cơ học**, không phải 20 phút như tôi ghi ban đầu |
+| Nhân viên kinh doanh | 2 | "Check trên file tồn kho kế toán gửi, nếu tồn có thì bán, nếu tồn có nhưng nợ khách thì hỏi kế toán xem khách nợ bao giờ lấy, có lấy trước được không". "Em tự tra trên file, nhưng nếu gặp 1 vài trường hợp thì phải hỏi kế toán **vì em không có dữ liệu đó**". "Thỉnh thoảng hơi sai do **dò sai dòng**". Đã hứa sai với khách "vì **nhìn sai tồn kho**". Cần thêm: "cần biết đang ở **kho nào**, bán được không" | Thu hẹp problem cho đúng. Sale đa số tự tra được và "thường là chắc chắn với kết quả" — bảng không khó đọc với mọi tình huống như tôi giả định. Pain nằm gọn ở **một tình huống**: tồn có nhưng đang nợ khách. Và nguyên nhân là **thiếu hẳn một trường dữ liệu** — ngày khách đang nợ đến lấy — chứ không phải giao diện xấu |
+
+**Kết luận sau kiểm chứng:** nguyên nhân gốc nhỏ hơn tôi tưởng rất nhiều, và mở ra ba mức giải pháp rẻ dần — (0) thêm một cột "ngày khách đang nợ sẽ lấy" vào bảng hiện tại, (1) script tự gộp 3 file, (2) tính sẵn số cuối bằng cumulative ATP with look-ahead. Mức 0 gần như không tốn gì mà xử lý đúng phần tốn kém nhất, nên nếu làm thì phải làm trước.
+
 ---
 
 #### Problem Card #2 — Chốt doanh số tháng và đối chiếu lệch số
